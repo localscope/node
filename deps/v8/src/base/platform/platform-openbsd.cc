@@ -6,6 +6,7 @@
 // POSIX-compatible parts, the implementation is in platform-posix.cc.
 
 #include <pthread.h>
+#include <pthread_np.h>
 #include <semaphore.h>
 #include <signal.h>
 #include <stdlib.h>
@@ -121,6 +122,13 @@ void OS::SignalCodeMovingGC() {
 }
 
 void OS::AdjustSchedulingParams() {}
+
+Stack::StackSlot Stack::GetStackStart() {
+  stack_t stack;
+  int error = pthread_stackseg_np(pthread_self(), &stack);
+  CHECK(!error);
+  return reinterpret_cast<uint8_t*>(stack.ss_sp);
+}
 
 }  // namespace base
 }  // namespace v8

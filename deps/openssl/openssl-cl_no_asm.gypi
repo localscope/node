@@ -20,6 +20,8 @@
       'includes': ['config/archs/VC-WIN64-ARM/no-asm/openssl-cl.gypi'],
     }, 'target_arch=="ia32" and OS=="freebsd"', {
       'includes': ['config/archs/BSD-x86/no-asm/openssl-cl.gypi'],
+    }, 'target_arch=="ia32" and OS=="openbsd"', {
+      'includes': ['config/archs/BSD-x86/no-asm/openssl-cl.gypi'],
     }, 'target_arch=="ia32" and OS=="linux"', {
       'includes': ['config/archs/linux-elf/no-asm/openssl-cl.gypi'],
     }, 'target_arch=="ia32" and OS=="mac"', {
@@ -32,6 +34,8 @@
       # noasm linux-elf for other ia32 platforms
       'includes': ['config/archs/linux-elf/no-asm/openssl-cl.gypi'],
     }, 'target_arch=="x64" and OS=="freebsd"', {
+      'includes': ['config/archs/BSD-x86_64/no-asm/openssl-cl.gypi'],
+    }, 'target_arch=="x64" and OS=="openbsd"', {
       'includes': ['config/archs/BSD-x86_64/no-asm/openssl-cl.gypi'],
     }, 'target_arch=="x64" and OS=="mac"', {
       'includes': ['config/archs/darwin64-x86_64-cc/no-asm/openssl-cl.gypi'],
