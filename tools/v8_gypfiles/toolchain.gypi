@@ -1139,9 +1139,6 @@
           }],
         ],
       }],
-      ['OS=="openbsd"', {
-        'ldflags': [ '-z wxneeded' ],
-      }],
     ],  # conditions
     'configurations': {
       'Debug': {
