@@ -6,6 +6,7 @@
 // POSIX-compatible parts, the implementation is in platform-posix.cc.
 
 #include <pthread.h>
+#include <pthread_np.h>
 #include <semaphore.h>
 #include <signal.h>
 #include <stdlib.h>
@@ -126,6 +127,13 @@ std::vector<OS::MemoryRange> OS::GetFreeMemoryRangesWithin(
     OS::Address boundary_start, OS::Address boundary_end, size_t minimum_size,
     size_t alignment) {
   return {};
+}
+
+Stack::StackSlot Stack::GetStackStart() {
+  stack_t stack;
+  int error = pthread_stackseg_np(pthread_self(), &stack);
+  CHECK(!error);
+  return reinterpret_cast<uint8_t*>(stack.ss_sp);
 }
 
 }  // namespace base
